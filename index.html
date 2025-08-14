@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Food Junction — Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+
+    <style>
+         :root {
+            --brand: #ff914d;
+            --brand-2: #ff7b29;
+            --ink: #262626;
+            --bg: #fff8f0;
+            --card: #ffffff;
+            --shadow: 0 10px 20px rgba(0, 0, 0, .08);
+        }
+        
+        * {
+            box-sizing: border-box
+        }
+        
+        html,
+        body {
+            margin: 0
+        }
+        
+        body {
+            font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+        /* Header */
+        
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: linear-gradient(180deg, #fff 0%, #fff8f0 100%);
+            border-bottom: 1px solid rgba(0, 0, 0, .05);
+        }
+        
+        nav {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem
+        }
+        
+        .pill {
+            display: inline-flex;
+            gap: 10px;
+            align-items: center;
+            background: var(--brand);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 10px 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 14px rgba(255, 145, 77, .35);
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        
+        .pill:hover {
+            transform: translateY(-2px);
+            background: var(--brand-2);
+            box-shadow: 0 10px 24px rgba(255, 145, 77, .45)
+        }
+        /* Hero (light with warm multi-dish image + dark→light overlay) */
+        
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: 46vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            color: #1b1b1b;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, .55), rgba(255, 255, 255, .08)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat fixed;
+        }
+        
+        .hero .glass {
+            background: rgba(255, 255, 255, .72);
+            border: 1px solid rgba(255, 255, 255, .6);
+            backdrop-filter: blur(6px);
+            border-radius: 16px;
+            padding: 18px 22px;
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            margin: 30px 16px;
+        }
+        
+        .hero h1 {
+            margin: 0 0 6px;
+            font-size: clamp(1.6rem, 3vw, 2.4rem)
+        }
+        
+        .hero p {
+            margin: 0;
+            color: #555
+        }
+        /* Section */
+        
+        .section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 16px;
+        }
+        
+        .section h2 {
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            margin: 22px 0 10px;
+            color: #1f1f1f;
+        }
+        
+        .category {
+            margin: 28px 0 40px;
+        }
+        
+        .category h3 {
+            margin: 10px 0 18px;
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
+            color: #c14f00;
+            text-shadow: 0 0 12px rgba(255, 123, 41, .18);
+        }
+        /* Grid */
+        
+        .grid {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+        /* Card */
+        
+        .card {
+            background: var(--card);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform .25s ease, box-shadow .25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 34px rgba(255, 123, 41, .20)
+        }
+        
+        .thumb {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            display: block;
+            transition: transform .35s ease;
+        }
+        
+        .card:hover .thumb {
+            transform: scale(1.06)
+        }
+        
+        .meta {
+            padding: 10px 12px 12px;
+            display: flex;
+            justify-content: space-between;
+            gap: 6px;
+            align-items: center
+        }
+        
+        .title {
+            font-weight: 600;
+            font-size: .98rem;
+            color: #222;
+            flex: 1
+        }
+        
+        .price {
+            font-weight: 700;
+            font-size: .98rem;
+            color: #d65e10;
+            background: #fff3e8;
+            border: 1px solid #ffd9bf;
+            padding: 4px 8px;
+            border-radius: 10px;
+            white-space: nowrap
+        }
+        /* Footer with Play Store */
+        
+        footer {
+            margin-top: 40px;
+            padding: 22px 16px;
+            text-align: center;
+            background: #111;
+            color: #eee
+        }
+        
+        .store {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600
+        }
+        
+        .store img {
+            height: 44px
+        }
+        /* Utility */
+        
+        .hint {
+            font-size: .92rem;
+            color: #666
+        }
+        /* WhatsApp Floating Button */
+        
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #1ebe5d;
+        }
+        /* Pulse Animation */
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        /* Popup Styles */
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 350px;
+            animation: fadeInUp 0.3s ease;
+        }
+        
+        .popup-content h2 {
+            margin-bottom: 10px;
+        }
+        
+        .popup-content p {
+            font-size: 14px;
+            color: #444;
+        }
+        
+        .popup-content .whatsapp-link {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        
+        .popup-content .whatsapp-link:hover {
+            background: #1ebe5d;
+        }
+        /* Close Button */
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        /* Animation */
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">🍽️ Food Junction</div>
+            <button class="pill" onclick="document.querySelector('#menu').scrollIntoView({behavior:'smooth'})">Explore Menu</button>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="glass">
+            <h1>Welcome to <span style="color:var(--brand);">Food Junction</span></h1>
+            <p>Warm lighting, fresh flavors, and dishes for every mood. Scroll for our complete menu.</p>
+        </div>
+    </section>
+
+    <main id="menu" class="section">
+        <h2>🍽 Our Menu</h2>
+        <p class="hint">Images are royalty-free; all items have unique prices. Cards align side-by-side and adapt to any screen.</p>
+
+        <!-- ========= 1) Chinese Starters ========= -->
+        <div class="category">
+            <h3>🥟 Chinese Starters</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="C:\Users\compu\Desktop\FOOD JUNCTION WEB\images\chicken_fried_momo.jpg" alt="Chicken Fried Momo">
+                    <div class="meta"><span class="title">Chicken Fried Momo</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?spicy%20chicken,asian&sig=2" alt="Chicken Kondattam">
+                    <div class="meta"><span class="title">Chicken Kondattam</span><span class="price">₹155</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%2065,indian&sig=3" alt="Chicken 65">
+                    <div class="meta"><span class="title">Chicken 65</span><span class="price">₹140</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20wings&sig=4" alt="Chicken Wings">
+                    <div class="meta"><span class="title">Chicken Wings</span><span class="price">₹160</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?crispy%20fried%20chicken&sig=5" alt="Wots Fry Chicken">
+                    <div class="meta"><span class="title">Wots Fry Chicken</span><span class="price">₹149</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?momo,dim%20sum&sig=6" alt="Steam Momo">
+                    <div class="meta"><span class="title">Steam Momo</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?cornflakes%20chicken,crispy&sig=7" alt="Conflex Fry Chicken">
+                    <div class="meta"><span class="title">Conflex Fry Chicken</span><span class="price">₹145</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?lollipop%20chicken&sig=8" alt="Chicken Lolipop">
+                    <div class="meta"><span class="title">Chicken Lolipop</span><span class="price">₹170</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?pakora,indian%20snack&sig=9" alt="Chicken Pakora">
+                    <div class="meta"><span class="title">Chicken Pakora</span><span class="price">₹130</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?drumstick%20chicken,fried&sig=10" alt="Chicken Leg Fry">
+                    <div class="meta"><span class="title">Chicken Leg Fry</span><span class="price">₹180</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chilli%20chicken&sig=11" alt="Chilli Chicken Dry">
+                    <div class="meta"><span class="title">Chilli Chicken Dry</span><span class="price">₹150</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20popcorn&sig=12" alt="Chicken Popcorn">
+                    <div class="meta"><span class="title">Chicken Popcorn</span><span class="price">₹135</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?dry%20fried%20chicken&sig=13" alt="Chicken Dry Fry">
+                    <div class="meta"><span class="title">Chicken Dry Fry</span><span class="price">₹165</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 2) Sandwich & Burger ========= -->
+        <div class="category">
+            <h3>🥪 Sandwich & Burger</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?veg%20sandwich&sig=14" alt="Veg Sandwich">
+                    <div class="meta"><span class="title">Veg Sandwich</span><span class="price">₹90</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20sandwich&sig=15" alt="Chicken Sandwich">
+                    <div class="meta"><span class="title">Chicken Sandwich</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?paneer%20sandwich&sig=16" alt="Paneer Sandwich">
+                    <div class="meta"><span class="title">Paneer Sandwich</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?grilled%20sandwich&sig=17" alt="Dry Sandwich">
+                    <div class="meta"><span class="title">Dry Sandwich</span><span class="price">₹80</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?cheese%20slice&sig=18" alt="Extra Cheese">
+                    <div class="meta"><span class="title">Extra Cheese</span><span class="price">₹25</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?zinger%20burger,crispy%20burger&sig=19" alt="Zinger Burger">
+                    <div class="meta"><span class="title">Zinger Burger</span><span class="price">₹149</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 3) Coffee & Tea ========= -->
+        <div class="category">
+            <h3>☕ Coffee & Tea</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?green%20tea&sig=20" alt="Green Tea">
+                    <div class="meta"><span class="title">Green Tea</span><span class="price">₹60</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?honey%20green%20tea&sig=21" alt="Honey Green Tea">
+                    <div class="meta"><span class="title">Honey Green Tea</span><span class="price">₹70</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?black%20coffee&sig=22" alt="Black Coffee">
+                    <div class="meta"><span class="title">Black Coffee</span><span class="price">₹80</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?milk%20coffee&sig=23" alt="Milk Coffee">
+                    <div class="meta"><span class="title">Milk Coffee</span><span class="price">₹85</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chocolate%20coffee,mocha&sig=24" alt="Chocolate Coffee">
+                    <div class="meta"><span class="title">Chocolate Coffee</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?red%20tea&sig=25" alt="Red Tea">
+                    <div class="meta"><span class="title">Red Tea</span><span class="price">₹55</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?ginger%20tea&sig=26" alt="Ginger Tea">
+                    <div class="meta"><span class="title">Ginger Tea</span><span class="price">₹65</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?lemon%20tea&sig=27" alt="Lemon Tea">
+                    <div class="meta"><span class="title">Lemon Tea</span><span class="price">₹65</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?malted%20milk,boost%20drink&sig=28" alt="Boost Milk">
+                    <div class="meta"><span class="title">Boost Milk</span><span class="price">₹90</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?iced%20tea&sig=29" alt="Ice Tea">
+                    <div class="meta"><span class="title">Ice Tea</span><span class="price">₹95</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?iced%20coffee&sig=30" alt="Ice Coffee">
+                    <div class="meta"><span class="title">Ice Coffee</span><span class="price">₹105</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?cold%20coffee&sig=31" alt="Cold Coffee">
+                    <div class="meta"><span class="title">Cold Coffee</span><span class="price">₹120</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 4) Soup & Egg ========= -->
+        <div class="category">
+            <h3>🍲 Soup & Egg</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20mushroom%20soup&sig=32" alt="Chicken Mushroom">
+                    <div class="meta"><span class="title">Chicken Mushroom</span><span class="price">₹140</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20soup&sig=33" alt="Chicken Soup">
+                    <div class="meta"><span class="title">Chicken Soup</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?sweet%20corn%20soup&sig=34" alt="Chicken Corn">
+                    <div class="meta"><span class="title">Chicken Corn</span><span class="price">₹125</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?manchow%20soup&sig=35" alt="Chicken Manchow">
+                    <div class="meta"><span class="title">Chicken Manchow</span><span class="price">₹135</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?omelet,breakfast&sig=36" alt="Single Omelet">
+                    <div class="meta"><span class="title">Single Omelet</span><span class="price">₹45</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?double%20omelet&sig=37" alt="Double Omelet">
+                    <div class="meta"><span class="title">Double Omelet</span><span class="price">₹70</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20curry&sig=38" alt="Egg Curry">
+                    <div class="meta"><span class="title">Egg Curry</span><span class="price">₹130</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?poached%20egg&sig=39" alt="Egg Poach">
+                    <div class="meta"><span class="title">Egg Poach</span><span class="price">₹60</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 5) Veg Main Course ========= -->
+        <div class="category">
+            <h3>🥘 Veg Main Course</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?gobi%2065&sig=40" alt="Gobi 65">
+                    <div class="meta"><span class="title">Gobi 65</span><span class="price">₹140</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20curry,indian&sig=41" alt="Egg Curry">
+                    <div class="meta"><span class="title">Egg Curry</span><span class="price">₹130</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?vegetable%20masala,curry&sig=42" alt="Masala Curry">
+                    <div class="meta"><span class="title">Masala Curry</span><span class="price">₹150</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?mushroom%20masala&sig=43" alt="Mushroom Masala">
+                    <div class="meta"><span class="title">Mushroom Masala</span><span class="price">₹165</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?mushroom%20fry&sig=44" alt="Mushroom Try Fry">
+                    <div class="meta"><span class="title">Mushroom Try Fry</span><span class="price">₹155</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chilli%20gobi&sig=45" alt="Chilli Gobi">
+                    <div class="meta"><span class="title">Chilli Gobi</span><span class="price">₹150</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chilli%20paneer&sig=46" alt="Chilli Paneer">
+                    <div class="meta"><span class="title">Chilli Paneer</span><span class="price">₹175</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?paneer%20manchurian&sig=47" alt="Paneer Manchurian">
+                    <div class="meta"><span class="title">Paneer Manchurian</span><span class="price">₹180</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chilli%20mushroom&sig=48" alt="Chilli Mushroom">
+                    <div class="meta"><span class="title">Chilli Mushroom</span><span class="price">₹160</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?vegetable%20korma&sig=49" alt="Vegetable Korma">
+                    <div class="meta"><span class="title">Vegetable Korma</span><span class="price">₹185</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?vegetable%20stew&sig=50" alt="Vegetable Sto">
+                    <div class="meta"><span class="title">Vegetable Sto</span><span class="price">₹140</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?vegetable%20curry&sig=51" alt="Vegetable Curry">
+                    <div class="meta"><span class="title">Vegetable Curry</span><span class="price">₹150</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 6) Non Veg Main Course ========= -->
+        <div class="category">
+            <h3>🍗 Non Veg Main Course</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?butter%20chicken&sig=52" alt="Butter Chicken Masala">
+                    <div class="meta"><span class="title">Butter Chicken Masala</span><span class="price">₹240</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chilli%20chicken&sig=53" alt="Chilli Chicken">
+                    <div class="meta"><span class="title">Chilli Chicken</span><span class="price">₹210</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20manchurian&sig=54" alt="Chicken Manchurian">
+                    <div class="meta"><span class="title">Chicken Manchurian</span><span class="price">₹220</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20curry,kosha&sig=55" alt="Chicken Kosha">
+                    <div class="meta"><span class="title">Chicken Kosha</span><span class="price">₹235</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20do%20pyaza&sig=56" alt="Chicken Do Pyaza">
+                    <div class="meta"><span class="title">Chicken Do Pyaza</span><span class="price">₹225</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?spicy%20chicken%20curry&sig=57" alt="Chicken Masala">
+                    <div class="meta"><span class="title">Chicken Masala</span><span class="price">₹210</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20korma&sig=58" alt="Chicken Korma">
+                    <div class="meta"><span class="title">Chicken Korma</span><span class="price">₹230</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20stew&sig=59" alt="Chicken Sto">
+                    <div class="meta"><span class="title">Chicken Sto</span><span class="price">₹200</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 7) Chowmein & Roll ========= -->
+        <div class="category">
+            <h3>🥡 Chowmein & Roll</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?mughlai%20paratha,roll&sig=60" alt="Mughlai">
+                    <div class="meta"><span class="title">Mughlai</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20roll,kathi&sig=61" alt="Chicken Roll">
+                    <div class="meta"><span class="title">Chicken Roll</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?potato%20roll&sig=62" alt="Potato Roll">
+                    <div class="meta"><span class="title">Potato Roll</span><span class="price">₹80</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?paneer%20roll,kathi&sig=63" alt="Paneer Roll">
+                    <div class="meta"><span class="title">Paneer Roll</span><span class="price">₹100</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20noodles&sig=64" alt="Chicken Chowmein Half">
+                    <div class="meta"><span class="title">Chicken Chowmein Half</span><span class="price">₹95</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?veg%20noodles&sig=65" alt="Veg Chowmein">
+                    <div class="meta"><span class="title">Veg Chowmein</span><span class="price">₹85</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20roll&sig=66" alt="Egg Roll">
+                    <div class="meta"><span class="title">Egg Roll</span><span class="price">₹90</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20noodles&sig=67" alt="Egg Chowmein Full">
+                    <div class="meta"><span class="title">Egg Chowmein Full</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20noodles&sig=68" alt="Egg Chowmein Half">
+                    <div class="meta"><span class="title">Egg Chowmein Half</span><span class="price">₹85</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20noodles&sig=69" alt="Chicken Chowmein Full">
+                    <div class="meta"><span class="title">Chicken Chowmein Full</span><span class="price">₹130</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 8) Rice ========= -->
+        <div class="category">
+            <h3>🍚 Rice</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20fried%20rice&sig=70" alt="Egg Fried Rice">
+                    <div class="meta"><span class="title">Egg Fried Rice</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?veg%20fried%20rice&sig=71" alt="Veg. Fried Rice">
+                    <div class="meta"><span class="title">Veg. Fried Rice</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20fried%20rice&sig=72" alt="Chicken Fried Rice">
+                    <div class="meta"><span class="title">Chicken Fried Rice</span><span class="price">₹140</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?schezwan%20fried%20rice&sig=73" alt="Chi. Schezwan Fried Rice">
+                    <div class="meta"><span class="title">Chi. Schezwan Fried Rice</span><span class="price">₹150</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20biryani&sig=74" alt="Chicken Biriyani">
+                    <div class="meta"><span class="title">Chicken Biriyani</span><span class="price">₹220</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?egg%20biryani&sig=75" alt="Egg Biriyani">
+                    <div class="meta"><span class="title">Egg Biriyani</span><span class="price">₹170</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 9) Dosa ========= -->
+        <div class="category">
+            <h3>🥞 Dosa</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?masala%20dosa&sig=76" alt="Masala Dosa">
+                    <div class="meta"><span class="title">Masala Dosa</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?dosa&sig=77" alt="Dosa">
+                    <div class="meta"><span class="title">Dosa</span><span class="price">₹90</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chocolate%20dosa&sig=78" alt="Chocolate Dosa">
+                    <div class="meta"><span class="title">Chocolate Dosa</span><span class="price">₹130</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?mix%20dosa,uttapam&sig=79" alt="Mixer Dosa">
+                    <div class="meta"><span class="title">Mixer Dosa</span><span class="price">₹125</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?neer%20dosa&sig=80" alt="Neer Dosa">
+                    <div class="meta"><span class="title">Neer Dosa</span><span class="price">₹115</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 10) Porota & Chapati ========= -->
+        <div class="category">
+            <h3>🥖 Porota & Chapati</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?lachha%20paratha&sig=81" alt="Lachha Porota">
+                    <div class="meta"><span class="title">Lachha Porota</span><span class="price">₹35</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?butter%20paratha&sig=82" alt="Butter Lachha Porota">
+                    <div class="meta"><span class="title">Butter Lachha Porota</span><span class="price">₹45</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chilli%20paratha&sig=83" alt="Chilli Porota">
+                    <div class="meta"><span class="title">Chilli Porota</span><span class="price">₹40</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20paratha&sig=84" alt="Chicken Chilli Porota">
+                    <div class="meta"><span class="title">Chicken Chilli Porota</span><span class="price">₹80</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chapati,roti&sig=85" alt="Chapati">
+                    <div class="meta"><span class="title">Chapati</span><span class="price">₹20</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= 11) Mojito ========= -->
+        <div class="category">
+            <h3>🥤 Mojito</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?blueberry%20mojito&sig=86" alt="Blue Berry">
+                    <div class="meta"><span class="title">Blue Berry</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?mint%20mojito&sig=87" alt="Mint">
+                    <div class="meta"><span class="title">Mint</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?paan%20mojito&sig=88" alt="Paan Mojito">
+                    <div class="meta"><span class="title">Paan Mojito</span><span class="price">₹115</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?green%20apple%20mojito&sig=89" alt="Green Apple">
+                    <div class="meta"><span class="title">Green Apple</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?watermelon%20mojito&sig=90" alt="Watermelon">
+                    <div class="meta"><span class="title">Watermelon</span><span class="price">₹115</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?passion%20fruit%20mojito&sig=91" alt="Passion Food">
+                    <div class="meta"><span class="title">Passion Food</span><span class="price">₹130</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?ginger%20mojito&sig=92" alt="Ginger">
+                    <div class="meta"><span class="title">Ginger</span><span class="price">₹105</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?virgin%20mojito&sig=93" alt="Virgin Mojito">
+                    <div class="meta"><span class="title">Virgin Mojito</span><span class="price">₹100</span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ========= 2) 🍕 PIZZA  ========= -->
+        <div class="category">
+            <h3>🍕 PIZZA </h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?veg%20sandwich&sig=14" alt="Chicken Cheese Burst">
+                    <div class="meta"><span class="title">Chicken Cheese Burst</span><span class="price">₹90</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20sandwich&sig=15" alt="Delight Corn Pizza">
+                    <div class="meta"><span class="title">Delight Corn Pizza</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?paneer%20sandwich&sig=16" alt="Margherita Pizza">
+                    <div class="meta"><span class="title">Margherita Pizza</span><span class="price">₹110</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?grilled%20sandwich&sig=17" alt="Vegetable Loaded Pizza">
+                    <div class="meta"><span class="title">Vegetable Loaded Pizza</span><span class="price">₹80</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?cheese%20slice&sig=18" alt="Paneer Fiesta Pizza">
+                    <div class="meta"><span class="title">Paneer Fiesta Pizza</span><span class="price">₹25</span></div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ========= 2) 🐟 FISH Items  ========= -->
+        <div class="category">
+            <h3>🐟 FISH Items </h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?veg%20sandwich&sig=14" alt="Fish Tawa Fry">
+                    <div class="meta"><span class="title">Fish Tawa Fry</span><span class="price">₹90</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chicken%20sandwich&sig=15" alt="Fans Roast">
+                    <div class="meta"><span class="title">Fans Roast</span><span class="price">₹120</span></div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <!-- ========= 12) Milk Shake ========= -->
+        <div class="category">
+            <h3>🥛 Milk Shake</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?peanut%20butter%20milkshake&sig=94" alt="Peanut Butter Milk Shake">
+                    <div class="meta"><span class="title">Peanut Butter Milk Shake</span><span class="price">₹150</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?hazelnut%20chocolate%20shake&sig=95" alt="Hazelnut Chocolate Shake">
+                    <div class="meta"><span class="title">Hazelnut Chocolate Shake</span><span class="price">₹160</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?vanilla%20milkshake&sig=96" alt="Vanilla Shake">
+                    <div class="meta"><span class="title">Vanilla Shake</span><span class="price">₹120</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?butter%20scotch%20shake&sig=97" alt="Butter Shake Milk Shake">
+                    <div class="meta"><span class="title">Butter Shake Milk Shake</span><span class="price">₹135</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?strawberry%20milkshake&sig=98" alt="Stray Berry Milk Shake">
+                    <div class="meta"><span class="title">Stray Berry Milk Shake</span><span class="price">₹130</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?avil%20milk,muslim%20dessert&sig=99" alt="Avil Milk Shake">
+                    <div class="meta"><span class="title">Avil Milk Shake</span><span class="price">₹140</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?sarja%20milkshake&sig=100" alt="Sarja Milkshake">
+                    <div class="meta"><span class="title">Sarja Milkshake</span><span class="price">₹145</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?kitkat%20milkshake&sig=101" alt="Kitkat Milkshake">
+                    <div class="meta"><span class="title">Kitkat Milkshake</span><span class="price">₹150</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?coconut%20milkshake&sig=102" alt="Coconut Milkshake">
+                    <div class="meta"><span class="title">Coconut Milkshake</span><span class="price">₹135</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?carrot%20milkshake&sig=103" alt="Carrot Milkshake">
+                    <div class="meta"><span class="title">Carrot Milkshake</span><span class="price">₹125</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?amul%20milkshake&sig=104" alt="Amul Milkshake">
+                    <div class="meta"><span class="title">Amul Milkshake</span><span class="price">₹120</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========= Ice Cream ========= -->
+        <div class="category">
+            <h3>🍨 Ice Cream</h3>
+            <div class="grid">
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?vanilla%20ice%20cream&sig=105" alt="Vanilla">
+                    <div class="meta"><span class="title">Vanilla</span><span class="price">₹70</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?butterscotch%20ice%20cream&sig=106" alt="Butterscotch">
+                    <div class="meta"><span class="title">Butterscotch</span><span class="price">₹80</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?strawberry%20ice%20cream&sig=107" alt="Strawberry">
+                    <div class="meta"><span class="title">Strawberry</span><span class="price">₹75</span></div>
+                </div>
+                <div class="card"><img loading="lazy" class="thumb" src="https://source.unsplash.com/600x400/?chocolate%20ice%20cream&sig=108" alt="Chocolate">
+                    <div class="meta"><span class="title">Chocolate</span><span class="price">₹85</span></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <footer>
+        <p>© 2025 Food Junction | All Rights Reserved</p>
+        <h2 class="animate-fade" style="color: #55f891;">ORDER NOW ON MOZEZA</h2>
+        <a href="https://play.google.com/store/apps/details?id=com.mozeza.user&hl=en_IN" target="_blank" class="playstore-btn">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
+        </a>
+    </footer>
+
+
+
+    <script>
+        // (Optional) subtle reveal on scroll
+        const reveal = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.opacity = '1';
+                    reveal.unobserve(e.target);
+                }
+            })
+        }, {
+            threshold: .18
+        });
+        document.querySelectorAll('.card').forEach(c => {
+            c.style.transform = 'translateY(12px)';
+            c.style.opacity = '0';
+            c.style.transition = 'transform .5s ease, opacity .5s ease';
+            reveal.observe(c);
+        });
+
+        function openWhatsAppPopup() {
+            document.getElementById("whatsapp-popup").style.display = "flex";
+        }
+
+        function closeWhatsAppPopup() {
+            document.getElementById("whatsapp-popup").style.display = "none";
+        }
+    </script>
+
+
+    <!-- WhatsApp Chat Button -->
+    <button class="whatsapp-btn" onclick="openWhatsAppPopup()">💬 Chat on WhatsApp</button>
+
+    <!-- WhatsApp Popup -->
+    <div id="whatsapp-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeWhatsAppPopup()">&times;</span>
+            <h2>Chat with Food Junction</h2>
+            <p>Have questions or want to place an order? Chat with us on WhatsApp!</p>
+            <a href="https://wa.me/911234567890?text=Hello%20Food%20Junction%20I%20would%20like%20to%20order" target="_blank" class="whatsapp-link">Open WhatsApp</a>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
