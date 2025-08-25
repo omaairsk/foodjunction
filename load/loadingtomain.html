@@ -4,88 +4,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Junction</title>
-     <style>
-    /* Splash Screen Styles */
-    #splash {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #3e2723, #6d4c41, #a1887f, #d4af37);
-      background-size: 400% 400%;
-      animation: gradientBG 10s ease infinite;
-      z-index: 9999;
-      flex-direction: column;
-      color: white;
-    }
-
-    #splash img {
-      width: 180px;
-      max-width: 60%;
-      filter: drop-shadow(0px 0px 15px rgba(212,175,55,0.7));
-      animation: logoPulse 3s infinite ease-in-out;
-    }
-
-    .spinner {
-      margin-top: 25px;
-      width: 55px;
-      height: 55px;
-      border: 6px solid rgba(255,255,255,0.2);
-      border-top: 6px solid #d4af37; /* Golden accent */
-      border-radius: 50%;
-      animation: spin 1.2s linear infinite;
-      box-shadow: 0 0 20px rgba(212,175,55,0.5);
-    }
-
-    @keyframes gradientBG {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    @keyframes spin {
-      0% {transform: rotate(0deg);}
-      100% {transform: rotate(360deg);}
-    }
-
-    @keyframes logoPulse {
-      0%, 100% { transform: scale(1);}
-      50% { transform: scale(1.05);}
-    }
-
-    /* Fade-out effect */
-    .fade-out {
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-  </style>
+    <title>Food Junction - Welcome</title>
+    <style>
+        /* Splash Screen */
+        
+        #splash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, #1c1c1c, #2a2a2a, #3e2723, #6d4c41, #d4af37);
+            background-size: 400% 400%;
+            animation: gradientFlow 10s ease infinite;
+            z-index: 9999;
+            color: white;
+            overflow: hidden;
+        }
+        /* Logo */
+        
+        #splash img {
+            width: 190px;
+            max-width: 60%;
+            filter: drop-shadow(0px 0px 25px rgba(212, 175, 55, 0.7));
+            animation: logoPulse 3s infinite ease-in-out;
+        }
+        /* Welcome Text */
+        
+        #splash h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2rem;
+            margin-top: 20px;
+            color: #f8f8f8;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #d4af37, #fff8e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 2s ease-in-out;
+        }
+        /* Fork & Spoon Spinner */
+        
+        .spinner {
+            margin-top: 30px;
+            position: relative;
+            width: 80px;
+            height: 80px;
+            animation: spin 2s linear infinite;
+        }
+        
+        .fork,
+        .spoon {
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            font-size: 2rem;
+            color: #d4af37;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+        
+        .fork {
+            left: 0;
+            top: 20px;
+        }
+        
+        .spoon {
+            right: 0;
+            top: 20px;
+        }
+        /* Gradient Flow */
+        
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        /* Rotation */
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Logo Pulse */
+        
+        @keyframes logoPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.07);
+            }
+        }
+        /* Fade In Text */
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Fade Out Splash */
+        
+        .fade-out {
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Splash Screen -->
     <div id="splash">
-        <img src="load/Food Junction (1).svg" alt="Welcome To Food Junction ">
-        <div class="spinner"></div>
+        <img src="load/Food Junction (4).png" alt="Food Junction Logo">
+        <h1>Welcome to Food Junction</h1>
+        <div class="spinner">
+            <div class="fork">🍴</div>
+            <div class="spoon">🥄</div>
+        </div>
     </div>
 
     <script>
-        // Redirect after 3 seconds
+        // Redirect after fade-out
         window.addEventListener("load", () => {
             setTimeout(() => {
-                window.location.href = "https://omaairsk.github.io/foodjunction/"; // 🔗 Replace with your main site URL
-            }, 2000);
+                document.getElementById("splash").classList.add("fade-out");
+                setTimeout(() => {
+                    window.location.href = "https://omaairsk.github.io/foodjunction/"; // 🔗 Replace with your main site
+                }, 1000);
+            }, 3000); // 3 seconds splash
         });
     </script>
 </body>
 
-
 </html>
-
-
-
-
-
