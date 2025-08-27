@@ -128,6 +128,49 @@
             opacity: 0;
             transition: opacity 1s ease;
         }
+
+<script>
+// Ask permission when the site loads
+document.addEventListener("DOMContentLoaded", function () {
+  if ("Notification" in window && Notification.permission !== "granted") {
+    Notification.requestPermission().then(permission => {
+      console.log("Notification permission:", permission);
+    });
+  }
+});
+
+// Function to show notification
+function showNotification(title, body, icon = "https://omaairsk.github.io/foodjunction/logo.png") {
+  if ("Notification" in window && Notification.permission === "granted") {
+    new Notification(title, {
+      body: body,
+      icon: icon
+    });
+  } else {
+    alert(title + "\n" + body); // fallback for browsers without notification support
+  }
+}
+
+// Example function (you can call from button or JS event)
+function notifyOffer() {
+  showNotification("🍕 Food Junction", "New Offer: Get 20% OFF on Pizzas Today!");
+}
+</script>
+
+<!-- Example button to test -->
+<button onclick="notifyOffer()" style="padding:10px 20px; margin:20px; font-size:16px;">
+🔔 Show Offer Notification
+</button>
+
+        <script>
+window.onload = function() {
+  setTimeout(() => {
+    showNotification("👋 Welcome to Food Junction", "Explore our delicious menu today!");
+  }, 2000);
+};
+</script>
+
+        
     </style>
 </head>
 
@@ -159,6 +202,7 @@
 </body>
 
 </html>
+
 
 
 
