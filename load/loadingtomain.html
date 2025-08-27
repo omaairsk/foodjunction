@@ -130,7 +130,7 @@
         }
 
 <script>
-// Ask permission when the site loads
+// Ask for notification permission
 document.addEventListener("DOMContentLoaded", function () {
   if ("Notification" in window && Notification.permission !== "granted") {
     Notification.requestPermission().then(permission => {
@@ -147,27 +147,29 @@ function showNotification(title, body, icon = "https://omaairsk.github.io/foodju
       icon: icon
     });
   } else {
-    alert(title + "\n" + body); // fallback for browsers without notification support
+    alert(title + "\n" + body); // fallback
   }
 }
 
-// Example function (you can call from button or JS event)
-function notifyOffer() {
-  showNotification("🍕 Food Junction", "New Offer: Get 20% OFF on Pizzas Today!");
-}
-</script>
-
-<!-- Example button to test -->
-<button onclick="notifyOffer()" style="padding:10px 20px; margin:20px; font-size:16px;">
-🔔 Show Offer Notification
-</button>
-
-        <script>
+// Auto trigger welcome notification when user opens app
 window.onload = function() {
   setTimeout(() => {
-    showNotification("👋 Welcome to Food Junction", "Explore our delicious menu today!");
-  }, 2000);
+    showNotification("👋 Welcome to Food Junction", "Check out our latest menu & offers!");
+  }, 2000); // 2 sec delay after app opens
 };
+
+// Auto trigger daily offer notification (once every 24h)
+document.addEventListener("DOMContentLoaded", function () {
+  const lastShown = localStorage.getItem("lastNotificationTime");
+  const now = Date.now();
+
+  if (!lastShown || (now - lastShown) > 24 * 60 * 60 * 1000) {
+    setTimeout(() => {
+      showNotification("🍕 Special Offer!", "Get 20% OFF on all Pizzas today!");
+      localStorage.setItem("lastNotificationTime", now);
+    }, 5000); // show after 5 sec
+  }
+});
 </script>
 
         
@@ -202,6 +204,7 @@ window.onload = function() {
 </body>
 
 </html>
+
 
 
 
