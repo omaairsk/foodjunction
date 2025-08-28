@@ -11,6 +11,11 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
       color: #fff;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
     }
     header {
       text-align: center;
@@ -33,6 +38,16 @@
       backdrop-filter: blur(10px);
       border-radius: 15px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: slideUp 1.2s ease-out forwards;
+      animation-delay: 0.5s;
+    }
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
     .container ul {
       margin-left: 20px;
