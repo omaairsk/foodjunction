@@ -327,6 +327,35 @@
         }
 
 
+.glass-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  padding: 15px 25px;
+  margin-top: 50px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  flex-wrap: wrap;
+}
+
+.glass-footer a, 
+.glass-footer span {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.glass-footer a:hover {
+  color: #f9b208;
+  transform: translateY(-2px);
+}
 
         
     </style>
@@ -830,13 +859,12 @@
         </a>
 <br>
         <br>
-     <div class="links">
-      <a href="terms.html">📜 Terms & Conditions</a>
-      <span>|</span>
-      <a href="privacy.html">🔒 Privacy Policy</a>
-    </div>
-        
-        <h6 class="animate-fade" style="color: #D3D3D3;">Developed By - <a href="https://omaairsk.github.io/iamfardinsk/">iamfardinsk</a></h6>
+  <footer class="glass-footer">
+  <a href="terms.html">📜 Terms & Conditions</a>
+  <a href="privacy.html">🔒 Privacy Policy</a>
+  <span>👨‍💻 Developed By - iamfardinsk</span>
+</footer>
+
         <br>
         <br>
         <br>
@@ -894,6 +922,7 @@
 
 
 </html>
+
 
 
 
